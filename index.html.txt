@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Private ❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to right, #ffdde1, #ee9ca7);
+            text-align: center;
+            color: #333;
+        }
+
+        .center {
+            margin-top: 150px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 20px;
+            border: none;
+            background-color: #ff4d6d;
+            color: white;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        img {
+            width: 300px;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="login" class="center">
+    <h1>Enter Password ❤️</h1>
+    <input type="password" id="pass" placeholder="Enter secret...">
+    <br><br>
+    <button onclick="check()">Unlock</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main" class="hidden">
+
+    <h1>Deepshika ❤️</h1>
+
+    <img src="deepshika.jpg">
+
+    <iframe width="320" height="180"
+        src="https://www.youtube.com/embed/e1mOmdykmwI?autoplay=1&loop=1&playlist=e1mOmdykmwI">
+    </iframe>
+
+    <p style="max-width:700px;margin:auto;font-size:20px;line-height:1.8;">
+        Deepshika, somewhere between your smile and our conversations,
+        I found something I never want to lose.
+        The way you make me feel... I think they call this love ❤️
+
+        I don’t just want today with you,
+        I want a lifetime — a home, a family,
+        and growing old together.
+    </p>
+
+    <h1>Will you marry me? 💍</h1>
+
+    <button onclick="yes()">Yes ❤️</button>
+</div>
+
+<script>
+
+// CHANGE PASSWORD HERE
+const password = "iloveyou";
+
+function check() {
+    let input = document.getElementById("pass").value;
+
+    if (input === password) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("main").style.display = "block";
+    } else {
+        alert("Wrong password 😢");
+    }
+}
+
+function yes() {
+    document.body.innerHTML = `
+    <h1 style="margin-top:150px;color:#b30059;">
+    Deepshika ❤️ You said YES 💍
+    </h1>`;
+}
+
+</script>
+
+</body>
+</html>
