@@ -1,109 +1,263 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Private ❤️</title>
+<title>For Deepshika ❤️</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Georgia', serif;
-            background: linear-gradient(to right, #ffdde1, #ee9ca7);
-            text-align: center;
-            color: #333;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .center {
-            margin-top: 150px;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Georgia;
+    background: linear-gradient(to right, #1a1a1a, #4d004d);
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
 
-        input {
-            padding: 10px;
-            font-size: 18px;
-            border-radius: 10px;
-            border: none;
-            outline: none;
-        }
+/* FADE ANIMATION */
+.fade {
+    animation: fadeIn 1.5s ease-in;
+}
 
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            border-radius: 20px;
-            border: none;
-            background-color: #ff4d6d;
-            color: white;
-            cursor: pointer;
-        }
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
 
-        .hidden {
-            display: none;
-        }
+.page {
+    display: none;
+    padding: 30px;
+}
 
-        img {
-            width: 300px;
-            border-radius: 20px;
-            margin: 20px 0;
-        }
-    </style>
+.active {
+    display: block;
+}
+
+h1 {
+    color: #ffccd5;
+    text-shadow: 0 0 10px pink;
+}
+
+#text {
+    font-size: 18px;
+    max-width: 600px;
+    margin: auto;
+    line-height: 1.7;
+    min-height: 140px;
+}
+
+img {
+    width: 220px;
+    border-radius: 15px;
+    margin: 15px;
+}
+
+/* BUTTONS */
+button {
+    padding: 12px 22px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: none;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* HEART FLOAT */
+.heart {
+    position: absolute;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity:1; }
+    100% { transform: translateY(-10vh); opacity:0; }
+}
+
+#noBtn {
+    position: absolute;
+}
+</style>
 </head>
 
 <body>
 
-<!-- PASSWORD SCREEN -->
-<div id="login" class="center">
+<!-- BACKGROUND MUSIC -->
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<!-- PASSWORD -->
+<div id="login" class="page active fade">
     <h1>Enter Password ❤️</h1>
-    <input type="password" id="pass" placeholder="Enter secret...">
+    <input type="password" id="pass">
     <br><br>
     <button onclick="check()">Unlock</button>
 </div>
 
-<!-- MAIN CONTENT -->
-<div id="main" class="hidden">
+<!-- MAIN -->
+<div id="main" class="page fade">
 
-    <h1>Deepshika ❤️</h1>
+<h1>Deepshika ❤️</h1>
 
-    <img src="deepshika.jpg">
+<img id="photo" src="photo1.jpg">
 
-    <iframe width="320" height="180"
-        src="https://www.youtube.com/embed/e1mOmdykmwI?autoplay=1&loop=1&playlist=e1mOmdykmwI">
-    </iframe>
+<p id="text"></p>
 
-    <p style="max-width:700px;margin:auto;font-size:20px;line-height:1.8;">
-        Deepshika, somewhere between your smile and our conversations,
-        I found something I never want to lose.
-        The way you make me feel... I think they call this love ❤️
+<button onclick="next()">Continue ➡️</button>
 
-        I don’t just want today with you,
-        I want a lifetime — a home, a family,
-        and growing old together.
-    </p>
+</div>
 
-    <h1>Will you marry me? 💍</h1>
+<!-- FINAL -->
+<div id="final" class="page fade">
 
-    <button onclick="yes()">Yes ❤️</button>
+<h1>Will you marry me? 💍</h1>
+
+<button id="yesBtn" onclick="yes()">Yes ❤️</button>
+<button id="noBtn" onclick="noClick()">No 😢</button>
+
 </div>
 
 <script>
 
-// CHANGE PASSWORD HERE
+// PASSWORD
 const password = "iloveyou";
 
 function check() {
-    let input = document.getElementById("pass").value;
-
-    if (input === password) {
-        document.getElementById("login").style.display = "none";
-        document.getElementById("main").style.display = "block";
+    if (document.getElementById("pass").value === password) {
+        show("main");
+        typeWriter();
+        startSlideshow();
+        document.getElementById("music").play();
     } else {
         alert("Wrong password 😢");
     }
 }
 
-function yes() {
-    document.body.innerHTML = `
-    <h1 style="margin-top:150px;color:#b30059;">
-    Deepshika ❤️ You said YES 💍
-    </h1>`;
+function show(id) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
 }
+
+// TYPEWRITER STORY
+const message = `It all started on Bumble…
+
+Then I heard your voice…
+and I couldn’t stop myself.
+
+Maybe I was a little besharam 😄
+
+But I didn’t give up.
+
+And when I saw you…
+everything paused.
+
+That was the moment
+I realized—
+
+I love you ❤️
+
+And today…
+I choose you. Always.`;
+
+let i = 0;
+function typeWriter() {
+    if (i < message.length) {
+        document.getElementById("text").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeWriter, 40);
+    }
+}
+
+// PHOTO SLIDESHOW
+let photos = ["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg"];
+let index = 0;
+
+function startSlideshow() {
+    setInterval(() => {
+        index = (index + 1) % photos.length;
+        document.getElementById("photo").src = photos[index];
+    }, 2500);
+}
+
+// NEXT
+function next() {
+    show("final");
+}
+
+// HEART EXPLOSION
+function explode() {
+    for (let i = 0; i < 30; i++) {
+        let h = document.createElement("div");
+        h.innerHTML = "❤️";
+        h.style.position = "absolute";
+        h.style.left = "50%";
+        h.style.top = "50%";
+        document.body.appendChild(h);
+
+        let x = (Math.random()-0.5)*600;
+        let y = (Math.random()-0.5)*500;
+
+        h.style.transition = "1s";
+        setTimeout(()=>{
+            h.style.transform = `translate(${x}px,${y}px)`;
+            h.style.opacity = "0";
+        },50);
+
+        setTimeout(()=>h.remove(),1000);
+    }
+}
+
+// YES
+function yes() {
+    explode();
+    setTimeout(()=>{
+        document.body.innerHTML = `
+        <div class="fade" style="margin-top:120px;">
+            <h1>Deepshika ❤️ You said YES 💍</h1>
+
+            <p style="font-size:24px;">
+            Our forever starts now…
+            </p>
+
+            <p style="font-size:26px;font-weight:bold;">
+            “Aap mere khyal mai aaye…  
+            aur phir kabhi gaye hi nahi ❤️”
+            </p>
+
+            <p style="font-size:20px;">
+            I dream of a life with you…  
+            a home, happiness, and a beautiful future together ❤️
+            </p>
+        </div>`;
+    },800);
+}
+
+// PLAYFUL NO
+let tries = 0;
+function noClick() {
+    tries++;
+    moveNo();
+    if(tries>2) alert("Think again ❤️");
+}
+
+function moveNo() {
+    let btn = document.getElementById("noBtn");
+    btn.style.left = Math.random()*window.innerWidth+"px";
+    btn.style.top = Math.random()*window.innerHeight+"px";
+}
+
+// FLOAT HEARTS
+setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+},300);
 
 </script>
 
